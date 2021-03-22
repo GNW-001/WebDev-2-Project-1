@@ -5,8 +5,12 @@ Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
 
+import os
 from app import app
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash, session, abort, send_from_directory
+from werkzeug.utils import secure_filename
+
+from app.forms import PropForm
 
 
 ###
@@ -23,6 +27,29 @@ def home():
 def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
+
+@app.route('/property')
+def property():
+    form = PropForm()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            title = form.title.data
+            bed = form.numBedroom.data
+            bath = form.numBathroom.data
+            location = form.location.data
+            price = form.price.data
+            type = form.type.data
+        return redirect(url_for('home'))
+    return render_template('property.html', form=form)
+
+@app.route("/uploads/<filename>")
+def get_image(filename):
+    root_dir = os.getcwd()
+
+    try:
+        return send_from_directory(os.path.join(root_dir, app.config['UPLOAD_FOLDER']), filename, as_attachment=True)
+    except FileNotFoundError:
+        abort(404)
 
 
 ###
