@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+{% endblock %}
+
+{% block main %}
+<div>
+  <div class="container">
+      <div>
+          <img src= "{{url_for('get_image', filename=prop.imageName)}}"/>
+          <p>{{prop.title}}</p><br>
+          <p>{{prop.price}}</p>
+          <p>{{prop.type}}</p><br>
+          <p>{{prop.description}}</p><br>
+          <p>{{prop.bedroom}}</p>
+          <p>{{prop.bathroom}}</p><br>
+          <p>{{prop.location}}</p><br>
+          <button>Email Realtor</button>
+      </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{{ url_for('static', filename='js/app.min.js') }}" charset="utf-8"></script>
+{% endblock %}

@@ -8,7 +8,8 @@ class Property(db.Model):
     __tablename__ = 'properties'
 
     id = db.Column(db.Integer, primary_key=True)
-    title= db.Column(db.String(80))
+    title = db.Column(db.String(80))
+    description = db.Column(db.String(255))
     bedroom = db.Column(db.Integer)
     bathroom = db.Column(db.Integer)
     location = db.Column(db.String(100))
@@ -16,8 +17,9 @@ class Property(db.Model):
     type = db.Column(db.String(40))
     imageName = db.Column(db.String(80))
 
-    def __init__(self, title, bedroom, bathroom, location, price, type, imageName):
+    def __init__(self, title, description, bedroom, bathroom, location, price, type, imageName):
         self.title = title
+        self.description = description
         self.bedroom = bedroom
         self.bathroom = bathroom
         self.location = location
@@ -32,4 +34,4 @@ class Property(db.Model):
             return str(self.id)  # python 3 support
 
     def __repr__(self):
-        return '<User %r>' % (self.username)
+        return '<Property %r>' % (self.title)

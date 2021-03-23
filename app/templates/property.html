@@ -3,37 +3,30 @@
 {% block main %}
 <h1 class="page-header">Add Property</h1>
 
-{% include 'flash_messages.html' %}
-
 {# Add the appropriate method and enctype attributes to the form tag to allow for file uploads #}
-<form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+<form action="{{ url_for('property') }}" method="post" enctype="multipart/form-data">
   {{ form.csrf_token }}
   {# Add the file upload field as you learnt for Flask-WTF #}
   <div>
+      {{ form.csrf_token }}
       {{ form.hidden_tag() }}
 
       {{ form.title.label }}
-      <p>Title</p>
       {{ form.title }}
       <br>
       {{ form.numBedroom.label }}
-      <p>No. of Bedrooms</p>
       {{ form.numBedroom }}
       <br>
       {{ form.numBathroom.label }}
-      <p>No. of Bathrooms</p>
       {{ form.numBathroom }}
       <br>
       {{ form.location.label }}
-      <p>Location</p>
       {{ form.location }}
       <br>
       {{ form.price.label }}
-      <p>Price</p>
       {{ form.price }}
       <br>
       {{ form.type.label }}
-      <p>Type</p>
       {{ form.type }}
       <br>
 
@@ -41,6 +34,6 @@
       {{ form.propImage(class="form-control") }}
   </div>
 
-  <button type="submit" name="submit" class="btn btn-primary">Upload file</button>
+  <button type="submit" name="submit" class="btn btn-primary">Submit Property</button>
 </form>
 {% endblock %}

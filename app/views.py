@@ -6,11 +6,13 @@ This file creates your application.
 """
 
 import os
-from app import app
+from app import app, db
 from flask import render_template, request, redirect, url_for, flash, session, abort, send_from_directory
 from werkzeug.utils import secure_filename
 
 from app.forms import PropForm
+from app.models import Property
+
 
 
 ###
@@ -28,19 +30,40 @@ def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
 
-@app.route('/property')
+@app.route('/property', methods=['POST', 'GET'])
 def property():
+    filefolder ='./uploads'
     form = PropForm()
     if request.method == 'POST':
         if form.validate_on_submit():
             title = form.title.data
+            description = form.description.data
             bed = form.numBedroom.data
             bath = form.numBathroom.data
             location = form.location.data
-            price = form.price.data
+            price = float(form.price.data)
             type = form.type.data
+
+            image = form.propImage.data
+            filename = secure_filename(image.filename)
+            image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+            prop = Property(title, description, bed, bath, location, price, type, filename)
+            print(prop.title)
+            print(prop.type)
+
+            db.session.add(prop)
+            db.session.commit()
+        else:
+            print(form.errors)
         return redirect(url_for('home'))
     return render_template('property.html', form=form)
+
+
+@app.route('/properties')
+def properties():
+    propList = Property.query.all()
+    return render_template('properties.html', propList=propList)
 
 @app.route("/uploads/<filename>")
 def get_image(filename):
@@ -51,6 +74,10 @@ def get_image(filename):
     except FileNotFoundError:
         abort(404)
 
+@app.route("/property/<pid>")
+def get_property(pid):
+    prop = db.session.query(Property).filter_by(id = pid).first()
+    return render_template('thisproperty.html', prop=prop)
 
 ###
 # The functions below should be applicable to all Flask apps.
