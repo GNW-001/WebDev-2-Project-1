@@ -9,7 +9,7 @@ class Property(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(80))
-    description = db.Column(db.String(255))
+    description = db.Column(db.String(511))
     bedroom = db.Column(db.Integer)
     bathroom = db.Column(db.Integer)
     location = db.Column(db.String(100))

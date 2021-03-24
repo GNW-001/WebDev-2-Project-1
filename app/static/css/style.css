@@ -1,0 +1,99 @@
+* {
+    font-family: "Trebuchet MS", monospace;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 50px 50px;
+}
+
+img {
+    max-width: 650px;
+    max-height: 650px;
+}
+
+.topH img {
+    max-width: 350px;
+    max-height: 350px;
+}
+
+.grid-item {
+    background-color:rgba(0, 123, 255, 0.1);
+    display: flex;
+    align-items: center;
+    box-shadow: 2px 2px 1px grey;
+}
+
+body {
+    background-image: url("../images/background1.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+main {
+    padding-top: 20px;
+    background-color:rgba(255,255,255,0.3);
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.grid-item p{
+    min-width: 150px;
+    margin: 10px;
+}
+
+.grid-item a{
+   width:100%;
+}
+
+.botH {
+    text-align: center;
+}
+
+.pLocation {
+    color: gray;
+}
+
+.pPrice {
+    color: rgba(0, 123, 255, 1);
+    border-radius: 10%;
+}
+
+.botH img {
+    height: 18px;
+    width: 18px;
+}
+
+.house {
+    padding-top: 50px;
+    max-height: 650px;
+    box-shadow: 2px 2px 1px grey;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.houseDets {
+    margin-top: 20px;
+    margin-left: 20px;
+    min-width: 300px;
+    margin-bottom: 5px;
+}
+
+.houseDets img {
+    height: 18px;
+    width: 18px;
+
+}
+.house p {
+    display: inline;
+}

@@ -79,6 +79,7 @@ def get_property(pid):
     prop = db.session.query(Property).filter_by(id = pid).first()
     return render_template('thisproperty.html', prop=prop)
 
+
 ###
 # The functions below should be applicable to all Flask apps.
 ###

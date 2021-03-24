@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block main %}
-<h1 class="page-header">Add Property</h1>
+<h2 class="page-header">Add Property</h2>
 
 {# Add the appropriate method and enctype attributes to the form tag to allow for file uploads #}
 <form action="{{ url_for('property') }}" method="post" enctype="multipart/form-data">
   {{ form.csrf_token }}
   {# Add the file upload field as you learnt for Flask-WTF #}
-  <div>
+  <div class="pForm">
       {{ form.csrf_token }}
       {{ form.hidden_tag() }}
 

@@ -6,19 +6,21 @@
 
 {% block main %}
 <div>
-  <div class="container">
-      <div>
-          <img src= "{{url_for('get_image', filename=prop.imageName)}}"/>
-          <p>{{prop.title}}</p><br>
-          <p>{{prop.price}}</p>
-          <p>{{prop.type}}</p><br>
-          <p>{{prop.description}}</p><br>
-          <p>{{prop.bedroom}}</p>
-          <p>{{prop.bathroom}}</p><br>
-          <p>{{prop.location}}</p><br>
-          <button>Email Realtor</button>
-      </div>
-  </div>
+    <div class="house">
+          <div class="houseImage">
+            <img src= "{{url_for('get_image', filename=prop.imageName)}}"/>
+          </div>
+          <div class="houseDets">
+              <h4>{{prop.title}}</h4><br><br>
+              <p class="pPrice">$ {{prop.price}}&nbsp;&nbsp;&nbsp;&nbsp;</p>
+              <p>{{prop.type}}</p><br><br>
+              <p>{{prop.description}}</p><br><br>
+              <p><img src="../static/images/bedblue.png"/> {{prop.bedroom}}&nbsp;&nbsp;&nbsp;&nbsp;</p>
+              <p><img src="../static/images/bathblue.png"/> {{prop.bathroom}}</p><br><br>
+              <p><img src="../static/images/mapmarker.png"/> {{prop.location}}</p><br><br>
+              <button class="btn btn-primary">Email Realtor</button>
+          </div>
+    </div>
 </div>
 {% endblock %}
 

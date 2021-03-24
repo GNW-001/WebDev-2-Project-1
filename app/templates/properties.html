@@ -1,19 +1,23 @@
 {% extends "base.html" %}
 
 {% block css %}
-<link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
 {% endblock %}
 
 {% block main %}
 <div>
-  <div class="container">
+  <h2>Properties</h2>
+  <div class="grid-container">
     {% for prop in propList %}
-      <div>
-        <img src= "{{url_for('get_image', filename=prop.imageName)}}"/>
-        <p>{{prop.title}}</p><br>
-        <p>{{prop.location}}</p><br>
-        <p>{{prop.price}}</p><br>
-        <a href="{{url_for('get_property', pid=prop.id)}}">View Property</a>
+      <div class="grid-item">
+        <div class="topH">
+          <img src= "{{url_for('get_image', filename=prop.imageName)}}"/>
+        </div>
+        <div class="botH">
+        <p class="pTitle">{{prop.title}}</p><br>
+        <p class="pLocation"><img src="../static/images/mapmarker.png"/>{{prop.location}}</p><br>
+        <p class="pPrice">$ {{prop.price}}</p><br>
+        </div>
+        <a href="{{url_for('get_property', pid=prop.id)}}"><button class="btn btn-primary">View Property</button></a>
       </div>
     {% endfor %}
   </div>
