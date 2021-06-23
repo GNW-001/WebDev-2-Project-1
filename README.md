@@ -1,2 +1,2 @@
-# flask_starter
-Starter code for a new Flask Application
+# Property website
+Flask implementation of a simplistic real-estate website with listings stored in PostgreSql db.
